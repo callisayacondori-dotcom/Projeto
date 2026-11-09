@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Administrar usuários{% endblock %}
+{% block content %}
+<p class="etiqueta">ADMINISTRAÇÃO</p>
+<h1>Usuários cadastrados</h1>
+<p>Somente a conta administrativa pode remover outros usuários. A exclusão também remove as notas da conta.</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Usuário</th><th>E-mail</th><th>Cadastro</th><th>Tipo</th><th>Ação</th></tr></thead>
+<tbody>
+{% for u in usuarios %}
+<tr>
+<td>{{ u.usuario }}</td><td>{{ u.email }}</td><td>{{ u.criado_em }}</td>
+<td>{% if u.is_admin %}Administrador{% else %}Usuário{% endif %}</td>
+<td>
+{% if not u.is_admin %}
+<form method="post" action="{{ url_for('admin_excluir_usuario', usuario_id=u.id) }}" onsubmit="return confirm('Excluir esta conta e todas as notas dela?')">
+<button class="botao secundario" type="submit">Excluir</button>
+</form>
+{% else %}Protegida{% endif %}
+</td>
+</tr>
+{% endfor %}
+</tbody></table></div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Hospitais{% endblock %}
+{% block content %}
+<p class="etiqueta">ATENDIMENTO DE SAÚDE</p>
+<h1>Hospitais e unidades de saúde — São Paulo</h1>
+<p>Lista organizada com os endereços e classificações informados para o projeto.</p>
+<div class="alerta"><strong>Importante:</strong> esta lista é informativa e não confirma estoque de soro, disponibilidade de atendimento especializado ou funcionamento atual. Hospitais privados podem prestar atendimento inicial e estabilização, mas a disponibilidade de antiveneno deve ser confirmada pela rede de saúde. Ligue para o SAMU (192) em emergências ou para o CIATox (0800-014-8110) para orientação e direcionamento, conforme disponibilidade regional.</div>
+{% set regioes = ["Cidade de São Paulo", "Região Metropolitana e Grande São Paulo", "Interior e Litoral de São Paulo", "Hospitais privados de São Paulo"] %}
+{% for regiao in regioes %}
+  <h2>{{ regiao }}</h2>
+  <div class="cards">
+  {% for h in hospitais if h.regiao == regiao %}
+    <article class="card">
+      <h3>{{ h.nome }}</h3>
+      <p><strong>Endereço:</strong> {{ h.endereco }}</p>
+      <p><strong>Localização:</strong> {{ h.cidade }} – {{ h.estado }}</p>
+      <p><strong>Gestão:</strong> {{ h.tipo }}</p>
+    </article>
+  {% endfor %}
+  </div>
+{% endfor %}
+<p class="nota">Antes de se deslocar, confirme por telefone se a unidade atende acidentes ofídicos e qual o fluxo de referência. A indicação de unidade e a necessidade de transferência devem ser orientadas por profissionais de saúde/CIATox.</p>
+{% endblock %}

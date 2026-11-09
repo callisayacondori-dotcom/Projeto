@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}Minhas notas{% endblock %}
+{% block content %}
+<p class="etiqueta">ÁREA PRIVADA</p>
+<h1>Minhas notas</h1>
+<p>Registre estudos, observações e ocorridos. As notas ficam vinculadas à conta que está conectada.</p>
+<div class="formulario">
+  <h2>Adicionar uma nota</h2>
+  <form method="post">
+    <label for="titulo">Título</label>
+    <input id="titulo" name="titulo" maxlength="120" required placeholder="Ex.: Estudo sobre jararacas">
+    <label for="conteudo">Conteúdo</label>
+    <textarea id="conteudo" name="conteudo" rows="7" maxlength="10000" required placeholder="Escreva sua anotação..."></textarea>
+    <button class="botao" type="submit">Salvar nota</button>
+  </form>
+</div>
+<h2>Notas salvas</h2>
+{% if notas %}
+  <div class="cards">
+  {% for nota in notas %}
+    <article class="card">
+      <h3>{{ nota.titulo }}</h3>
+      <p class="nota">{{ nota.criada_em }}</p>
+      <p style="white-space:pre-wrap">{{ nota.conteudo }}</p>
+      <form method="post" action="{{ url_for('excluir_nota', nota_id=nota.id) }}" onsubmit="return confirm('Deseja excluir esta nota?')">
+        <button class="botao secundario" type="submit">Excluir</button>
+      </form>
+    </article>
+  {% endfor %}
+  </div>
+{% else %}
+  <div class="card"><p>Você ainda não criou nenhuma nota.</p></div>
+{% endif %}
+{% endblock %}

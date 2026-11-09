@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Área de demonstração{% endblock %}
+{% block content %}
+<p class="etiqueta">ÁREA RESTRITA</p><h1>Olá, {{ usuario }}!</h1>
+<p>Você entrou com sucesso. Aqui você pode consultar o manual e manter suas próprias anotações.</p>
+<div class="cards">
+  <div class="card"><h2>📚 Manual</h2><p>Consulte as espécies, sintomas e informações de segurança.</p><a class="botao secundario" href="{{ url_for('especies') }}">Ver espécies</a></div>
+  <div class="card"><h2>📝 Minhas notas</h2><p>Documente estudos, observações e ocorridos.</p><a class="botao" href="{{ url_for('notas') }}">Abrir notas</a></div>
+  {% if session.get('is_admin') %}
+  <div class="card"><h2>🛠️ Administração</h2><p>Consulte as contas cadastradas e remova usuários quando necessário.</p><a class="botao" href="{{ url_for('administrar_usuarios') }}">Gerenciar usuários</a></div>
+  {% endif %}
+</div>
+<section class="formulario">
+  <h2>Excluir minha conta</h2>
+  <p>Essa ação é permanente e também apaga todas as notas vinculadas à sua conta. A conta administrativa principal é protegida.</p>
+  <form method="post" action="{{ url_for('excluir_propria_conta') }}" onsubmit="return confirm('Tem certeza? Sua conta e suas notas serão excluídas permanentemente.')">
+    <label for="senha_excluir">Confirme sua senha</label>
+    <input id="senha_excluir" type="password" name="senha" required autocomplete="current-password">
+    <button class="botao secundario" type="submit">Excluir minha conta</button>
+  </form>
+</section>
+{% endblock %}

@@ -1,0 +1,3 @@
+-- O SQLite cria as tabelas automaticamente pelo método criar_tabela()
+-- das classes Usuario e Nota. O arquivo do banco é instance/manual_cobras.db.
+-- Não execute este arquivo no Azure Data Studio.

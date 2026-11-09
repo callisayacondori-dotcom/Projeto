@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Entrar{% endblock %}
+{% block content %}
+<section class="formulario">
+<p class="etiqueta">ACESSO AO SITE</p><h1>Entrar</h1>
+<p>Entre com seu nome de usuário e senha.</p>
+<form method="post">
+<label for="usuario">Nome de usuário</label><input id="usuario" name="usuario" required autocomplete="username">
+<label for="senha">Senha</label><input id="senha" name="senha" type="password" required autocomplete="current-password">
+<button class="botao" type="submit">Entrar</button>
+</form>
+<p>Não tem uma conta? <a href="{{ url_for('cadastro') }}">Criar uma conta</a>.</p>
+<p class="nota">Contas de demonstração: aluno / Cobra@2026 e visitante / Serpente#26.</p>
+</section>
+{% endblock %}

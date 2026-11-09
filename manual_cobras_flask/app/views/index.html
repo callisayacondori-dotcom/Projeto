@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Manual das Cobras | Início{% endblock %}
+{% block content %}
+<section class="hero">
+  <p class="etiqueta">GUIA EDUCATIVO</p>
+  <h1>Conheça as cobras.<br><span>Respeite a natureza.</span></h1>
+  <p>Um manual introdutório sobre algumas serpentes brasileiras, seus venenos e o que fazer em caso de acidente.</p>
+  <div class="acoes"><a class="botao" href="{{ url_for('especies') }}">Ver espécies</a><a class="botao secundario" href="{{ url_for('seguranca') }}">Como agir com segurança</a></div>
+</section>
+<div class="alerta"><strong>Emergência:</strong> suspeita de picada de cobra? Procure atendimento médico imediatamente ou ligue para o SAMU (192). Não espere sintomas aparecerem.</div>
+<h2>Conheça algumas espécies</h2>
+<div class="cards">
+{% for e in especies %}
+  <article class="card"><span class="icone">🐍</span><h3>{{ e.nome }}</h3><p>{{ e.veneno }}</p></article>
+{% endfor %}
+</div>
+<p class="nota">A aparência não é suficiente para confirmar a espécie com segurança. Não tente capturar ou matar a serpente.</p>
+{% endblock %}

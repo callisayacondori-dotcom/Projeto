@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Criar conta{% endblock %}
+{% block content %}
+<section class="formulario">
+<p class="etiqueta">NOVO CADASTRO</p><h1>Criar uma conta</h1>
+<p>Preencha os campos abaixo para criar seu acesso ao Manual das Cobras.</p>
+<form method="post">
+<label for="email">E-mail</label>
+<input id="email" name="email" type="email" maxlength="254" required autocomplete="email" placeholder="seuemail@exemplo.com">
+<label for="usuario">Nome de usuário desejado</label>
+<input id="usuario" name="usuario" minlength="3" maxlength="30" pattern="[A-Za-z0-9_.-]+" required autocomplete="username" placeholder="Ex.: joao123">
+<small>Use de 3 a 30 caracteres: letras, números, ponto, traço ou underline.</small>
+<label for="senha">Senha</label>
+<input id="senha" name="senha" type="password" minlength="8" required autocomplete="new-password" placeholder="Mínimo de 8 caracteres">
+<label for="confirmar_senha">Confirmação de senha</label>
+<input id="confirmar_senha" name="confirmar_senha" type="password" minlength="8" required autocomplete="new-password" placeholder="Digite a senha novamente">
+<button class="botao" type="submit">Criar conta</button>
+</form>
+<p>Já tem uma conta? <a href="{{ url_for('login') }}">Entrar</a>.</p>
+</section>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Espécies e venenos{% endblock %}
+{% block content %}
+<p class="etiqueta">GUIA DE ESPÉCIES</p><h1>20 espécies peçonhentas e efeitos possíveis</h1>
+<p>Guia educativo com nomes científicos, distribuição geral e possíveis efeitos dos venenos. A identificação por aparência pode falhar, e os sintomas não confirmam a espécie.</p>
+<div class="cards">
+{% for e in especies %}<article class="card"><span class="icone">🐍</span><h2>{{ loop.index }}. {{ e.nome }}</h2><p><strong>Nome científico:</strong> <em>{{ e.cientifico }}</em></p><p><strong>Distribuição geral:</strong> {{ e.regiao }}</p><p><strong>Efeitos possíveis:</strong> {{ e.veneno }}</p></article>{% endfor %}
+</div>
+<div class="alerta"><strong>Emergência:</strong> após qualquer suspeita de picada, procure atendimento médico imediatamente ou ligue 192 (SAMU no Brasil). Mantenha a pessoa em repouso e o membro imóvel. Não faça torniquete, cortes, sucção nem aplique substâncias. Não tente capturar a cobra. O tratamento depende de avaliação profissional e, quando indicado, antiveneno específico.</div>
+<p class="nota">Os efeitos descritos são possibilidades, não uma previsão individual. Podem variar com a quantidade de veneno, local da picada, saúde da pessoa e tempo até o atendimento. A ocorrência de uma mordida não significa necessariamente que houve inoculação de veneno.</p>
+{% endblock %}

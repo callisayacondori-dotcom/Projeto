@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Soroterapia e tratamentos{% endblock %}
+{% block content %}
+<p class="etiqueta">TRATAMENTO HOSPITALAR</p>
+<h1>Soroterapia por espécie</h1>
+<p>Esta seção reúne informações educativas sobre o tratamento específico associado às 20 espécies do manual. A escolha do antiveneno depende da identificação, região, quadro clínico e protocolo médico.</p>
+<div class="alerta"><strong>Atenção:</strong> não existe um soro universal. Antivenenos brasileiros não devem ser presumidos eficazes contra espécies estrangeiras. Em caso de picada, procure emergência imediatamente; não tente capturar ou manipular a cobra.</div>
+<div class="table-wrap"><table>
+<thead><tr><th>Espécie</th><th>Grupo</th><th>Tratamento/antiveneno</th><th>Observações</th></tr></thead>
+<tbody>
+{% for t in tratamentos %}
+<tr>
+<td><strong>{{ t.cientifico }}</strong></td><td>{{ t.grupo }}</td><td>{{ t.tratamento }}</td><td>{{ t.observacao }}</td>
+</tr>
+{% endfor %}
+</tbody></table></div>
+<h2>Referência: soros utilizados no Brasil</h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Produto / tratamento</th><th>Uso geral</th><th>Valor</th></tr></thead>
+<tbody>{% for m in medicamentos %}<tr><td><strong>{{ m.nome }}</strong></td><td>{{ m.uso }}</td><td>{{ m.valor }}</td></tr>{% endfor %}</tbody>
+</table></div>
+<p class="nota">Os antivenenos são administrados em serviços de saúde, com monitoramento. Para espécies internacionais, a disponibilidade e a indicação variam por país. Esta página não fornece dose nem substitui protocolos oficiais e avaliação toxicológica.</p>
+{% endblock %}

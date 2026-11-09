@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Manual das Cobras{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<header class="topo">
+  <a class="marca" href="{{ url_for('index') }}">🐍 Manual das Cobras</a>
+  <nav>
+    <a href="{{ url_for('especies') }}">Espécies</a>
+    <a href="{{ url_for('medicamentos') }}">Soroterapia</a>
+    <a href="{{ url_for('seguranca') }}">Segurança</a>
+    <a href="{{ url_for('hospitais') }}">Hospitais</a>
+    {% if session.get('usuario') %}
+      <a href="{{ url_for('area') }}">Minha área</a><a href="{{ url_for('notas') }}">Notas</a>
+      {% if session.get('is_admin') %}<a href="{{ url_for('administrar_usuarios') }}">Administrar usuários</a>{% endif %}
+      <a href="{{ url_for('sair') }}">Sair</a>
+    {% else %}
+      <a href="{{ url_for('login') }}">Entrar</a><a href="{{ url_for('cadastro') }}">Criar conta</a>
+    {% endif %}
+  </nav>
+</header>
+<main class="container">
+  {% for categoria, mensagem in get_flashed_messages(with_categories=true) %}
+    <div class="aviso {{ categoria }}">{{ mensagem }}</div>
+  {% endfor %}
+  {% block content %}{% endblock %}
+</main>
+<footer>Projeto didático • Informação geral, não substitui atendimento médico.</footer>
+</body>
+</html>
